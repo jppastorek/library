@@ -8,10 +8,55 @@
     <title>Library</title>
     <link rel="stylesheet" href="./styles.css">
     <script src="./scripts.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
+    <div class="header">
+        <h1>Little Library</h1>
+    </div>
+    <div class="container">
+
+        <!--       MODAL       -->
+        <div class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div class="form">
+                    <form>
+                        <div class="modal-header">
+                            <h3>Add New Book</h3>
+                        </div>
+                        <div class="row1">
+                            <label for="title">Title:</label><br>
+                            <input type="text" id="title" name="title"><br>
+                        </div>
+                        <div class="row2">
+                            <label for="author">Author:</label><br>
+                            <input type="text" id="author" name="author"><br>
+                        </div>
+                        <div class="row3">
+                            <label for="author">Pages:</label><br>
+                            <input type="text" id="pages" name="pages"><br>
+                        </div>
+                        <div class="row4">
+                            <label for="read">Have you read this book?</label><br>
+                            <input type="radio" id="read" name="read" value="Yes">
+                            <label for="yes">Yes</label>
+                            <input type="radio" id="read" name="read" value="No">
+                            <label for="no">No</label><br>
+                        </div>
+                        <div class="submit-button"><button id="submit-button">Submit</button></div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+        <div class="button-container">
+            <button class="button">Add New Book</button>
+        </div>
 </body>
 
 </html>
