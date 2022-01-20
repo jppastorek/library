@@ -29,7 +29,36 @@ function addBook() {
     let read = formReadYes.value;
     let newBook = new Book(title, author, pages, read);
     myLibrary.push(newBook);
-    console.log(myLibrary);
+}
+
+function displayBooks() {
+    myLibrary.forEach((book) => {
+        let div = document.createElement("div");
+        let h2title = document.createElement("h2");
+        let h4author = document.createElement("h4");
+        let h4pages = document.createElement("h4");
+        let removeX = document.createElement("span");
+        removeX.classList.add("remove");
+        removeX.innerHTML = "&times;";
+        // removeX.addEventListener("click", () => {
+        //     myLibrary.
+        // })
+        h2title.innerText = `"${book.title}"`;
+        h4author.innerText = book.author;
+        h4pages.innerText = `${book.pages} pages`;
+        div.classList.add("card");
+        if (book.read === "yes") {
+            div.classList.add("read");
+        } else {
+            div.classList.add("unread");
+        }
+        container.appendChild(div);
+        div.appendChild(removeX);
+        div.appendChild(h2title);
+        div.appendChild(h4author);
+        div.appendChild(h4pages);
+    })
+
 }
 
 ///////////////////EVENT LISTENERS/////////////////
@@ -45,4 +74,5 @@ closeX.addEventListener("click", () => {
 buttonSubmit.addEventListener("click", () => {
     addBook();
     modal.classList.add("hidden");
+    displayBooks();
 });
