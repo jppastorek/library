@@ -4,11 +4,12 @@ const modal = document.querySelector(".modal");
 const formTitle = document.querySelector("#title");
 const formAuthor = document.querySelector("#author");
 const formPages = document.querySelector("#pages");
-const formReadYes = document.querySelector("#read-yes");
-const formReadNo = document.querySelector("#read-no");
+const checkedYes = document.querySelector("#read");
 const container = document.querySelector(".container");
+const bookContainer = document.querySelector(".book-container");
 const closeX = document.querySelector(".close");
 let myLibrary = [];
+const removeX = document.createElement("span");
 
 
 
@@ -26,37 +27,60 @@ function addBook() {
     let title = formTitle.value;
     let author = formAuthor.value;
     let pages = formPages.value;
-    let read = formReadYes.value;
+    let read = checkedYes.value;
     let newBook = new Book(title, author, pages, read);
     myLibrary.push(newBook);
 }
 
 function displayBooks() {
+    bookContainer.innerHTML = "";
     myLibrary.forEach((book) => {
         let div = document.createElement("div");
+        let div2 = document.createElement("div");
         let h2title = document.createElement("h2");
         let h4author = document.createElement("h4");
         let h4pages = document.createElement("h4");
-        let removeX = document.createElement("span");
+        // let removeX = document.createElement("span");
+        let markButton = document.createElement("button");
+        markButton.innerText = "Mark as read";
         removeX.classList.add("remove");
         removeX.innerHTML = "&times;";
-        // removeX.addEventListener("click", () => {
-        //     myLibrary.
-        // })
         h2title.innerText = `"${book.title}"`;
         h4author.innerText = book.author;
         h4pages.innerText = `${book.pages} pages`;
         div.classList.add("card");
-        if (book.read === "yes") {
-            div.classList.add("read");
+        div2.classList.add("remove-container")
+        if (book.read === "Read") {
+            markButton.classList.add("read");
+            markButton.innerText = "Mark as unread";
         } else {
-            div.classList.add("unread");
+            markButton.classList.add("unread");
+            markButton.innerText = "Mark as read";
         }
-        container.appendChild(div);
-        div.appendChild(removeX);
+        bookContainer.appendChild(div);
+        div.appendChild(div2);
+        div2.appendChild(removeX);
         div.appendChild(h2title);
         div.appendChild(h4author);
         div.appendChild(h4pages);
+        div.appendChild(markButton);
+        markButton.addEventListener("click", () => {
+            if (markButton.classList.contains("read")) {
+                markButton.classList.remove("read");
+                markButton.classList.add("unread");
+                markButton.innerText = "Mark as read";
+            } else if (markButton.classList.contains("unread")) {
+                markButton.classList.remove("unread");
+                markButton.classList.add("read");
+                markButton.innerText = "Mark as unread";
+            }
+        })
+        removeX.addEventListener("click", () => {
+            if (confirm("Are you sure you want to remove this book?") === true) {
+                myLibrary.splice(book.index, 1);
+                displayBooks();
+            };
+        })
     })
 
 }
