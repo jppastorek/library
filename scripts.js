@@ -9,7 +9,7 @@ const container = document.querySelector(".container");
 const bookContainer = document.querySelector(".book-container");
 const closeX = document.querySelector(".close");
 let myLibrary = [];
-const removeX = document.createElement("span");
+// const removeX = document.createElement("span");
 
 
 
@@ -27,7 +27,7 @@ function addBook() {
     let title = formTitle.value;
     let author = formAuthor.value;
     let pages = formPages.value;
-    let read = checkedYes.value;
+    let read = checkedYes.checked;
     let newBook = new Book(title, author, pages, read);
     myLibrary.push(newBook);
 }
@@ -40,7 +40,7 @@ function displayBooks() {
         let h2title = document.createElement("h2");
         let h4author = document.createElement("h4");
         let h4pages = document.createElement("h4");
-        // let removeX = document.createElement("span");
+        let removeX = document.createElement("span");
         let markButton = document.createElement("button");
         markButton.innerText = "Mark as read";
         removeX.classList.add("remove");
@@ -50,7 +50,7 @@ function displayBooks() {
         h4pages.innerText = `${book.pages} pages`;
         div.classList.add("card");
         div2.classList.add("remove-container")
-        if (book.read === "Read") {
+        if (book.read) {
             markButton.classList.add("read");
             markButton.innerText = "Mark as unread";
         } else {
