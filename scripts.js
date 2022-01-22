@@ -34,6 +34,7 @@ function addBook() {
 
 function displayBooks() {
     bookContainer.innerHTML = "";
+    let index = 0;
     myLibrary.forEach((book) => {
         let div = document.createElement("div");
         let div2 = document.createElement("div");
@@ -42,6 +43,7 @@ function displayBooks() {
         let h4pages = document.createElement("h4");
         let removeX = document.createElement("span");
         let markButton = document.createElement("button");
+        div.setAttribute('data', index);
         markButton.innerText = "Mark as read";
         removeX.classList.add("remove");
         removeX.innerHTML = "&times;";
@@ -75,12 +77,13 @@ function displayBooks() {
                 markButton.innerText = "Mark as unread";
             }
         })
-        removeX.addEventListener("click", () => {
+        removeX.addEventListener("click", (book) => {
             if (confirm("Are you sure you want to remove this book?") === true) {
-                myLibrary.splice(book.index, 1);
+                myLibrary.splice(div.getAttribute('data'), 1);
                 displayBooks();
             };
         })
+        index++;
     })
 
 }
