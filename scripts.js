@@ -16,12 +16,7 @@ let myLibrary = [];
 
 ///////////////////FUNCTIONS///////////////////////
 
-// function Book(title, author, pages, read) {
-//     this.title = title;
-//     this.author = author;
-//     this.pages = pages;
-//     this.read = read;
-// }
+
 
 class Book {
     constructor(title, author, pages, read) {
@@ -32,14 +27,6 @@ class Book {
     }
 }
 
-// function addBook() {
-//     let title = formTitle.value;
-//     let author = formAuthor.value;
-//     let pages = formPages.value;
-//     let read = checkedYes.checked;
-//     let newBook = new Book(title, author, pages, read);
-//     myLibrary.push(newBook);
-// }
 
 function displayBooks() {
     bookContainer.innerHTML = "";
